@@ -2,9 +2,222 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>JavaScript</title>
+    <title>js dom ornekler</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; line-height: 1.5; }
+        .kutu { border: 1px solid #ccc; padding: 10px; margin: 5px 0; background: #f9f9f9; }
+        .renkli { background-color: orange !important; color: white; }
+        .mavi-text { color: blue; }
+        .gizli { display: none; }
+        button { cursor: pointer; padding: 5px 10px; }
+        h2 { border-bottom: 2px solid #333; margin-top: 30px; }
+    </style>
 </head>
 <body>
-    <script src="/temel-kavramlar/varsayilan-parametre.js"></script>
+
+    <h1>javascript ornekleri</h1>
+
+    <h2>seçiciler</h2>
+    <div id="ana-baslik">ana başlık id'si</div>
+    <p class="paragraf"> class 1</p>
+    <p class="paragraf"> class 2</p>
+    <input type="text" name="kullaniciAdi" placeholder="İsim Giriniz">
+    <div id="ebeveyn">
+        <span>çocuk eleman</span>
+    </div>
+
+    <h2> event handling </h2>
+    <button id="tiklaBtn">bana tıkla</button>
+    <button id="ciftTiklaBtn">çift tıkla</button>
+    <div id="hoverKutu" class="kutu">üzerime gel </div>
+    <input type="text" id="klavyeInput" placeholder="Buraya yaz...">
+    <form id="myForm">
+        <button type="submit">form gönder</button>
+    </form>
+    <select id="sehirSec">
+        <option>Şehir Seç</option>
+        <option>İstanbul</option>
+        <option>Ankara</option>
+    </select>
+
+    <h2> element oluşturma değiştirme</h2>
+    <div id="konteyner" class="kutu">Bu kutunun içi değişecek.</div>
+    <ul id="liste">
+        <li>Mevcut Madde</li>
+    </ul>
+    <img id="resim" src="" alt="Resim Alanı" style="display:none">
+    <div id="silinecek">Beni Sil!</div>
+
+
+    <script>
+        console.log();
+
+        const baslik = document.getElementById('ana-baslik');
+        console.log("1. ID ile seçildi:", baslik.innerText);
+
+        const paragraflar = document.getElementsByClassName('paragraf');
+        console.log("2. Class ile seçildi (İlk eleman):", paragraflar[0].innerText);
+
+        const tumDivler = document.getElementsByTagName('div');
+        console.log("3. Tag ile seçilen div sayısı:", tumDivler.length);
+
+
+        const seciciID = document.querySelector('#ana-baslik');
+        console.log("4. querySelector ID:", seciciID.innerText);
+
+
+        const seciciClass = document.querySelector('.paragraf');
+        console.log("5. querySelector Class (Sadece ilk):", seciciClass.innerText);
+
+
+        const hepsi = document.querySelectorAll('.paragraf');
+        console.log("6. querySelectorAll (Hepsini döngüye sok):");
+        hepsi.forEach(p => console.log("   -", p.innerText));
+
+
+        const inputIsim = document.querySelector('input[name="kullaniciAdi"]');
+        console.log("7. Attribute ile input seçildi:", inputIsim.placeholder);
+
+
+        const ebeveyn = document.querySelector('#ebeveyn');
+        const cocuk = ebeveyn.querySelector('span');
+        console.log("8. Ebeveyn içinden çocuk:", cocuk.innerText);
+
+
+        const ilkParagraf = document.querySelector('p:first-of-type');
+        console.log("9. İlk p etiketi:", ilkParagraf.innerText);
+
+
+        const coklu = document.querySelectorAll('h2, #ana-baslik');
+        console.log("10. Hem h2'ler hem ID seçildi, toplam:", coklu.length);
+
+
+        // 
+
+        console.log();
+
+        const btn = document.getElementById('tiklaBtn');
+        btn.addEventListener('click', () => {
+            console.log("11. Butona Tıklandı!");
+            alert("Butona tıkladın!");
+        });
+
+        const btnCift = document.getElementById('ciftTiklaBtn');
+        btnCift.addEventListener('dblclick', () => {
+            console.log("12. Çift tıklandı!");
+            btnCift.innerText = "Çift Tıklandı!";
+        });
+
+        const hoverKutu = document.getElementById('hoverKutu');
+        hoverKutu.addEventListener('mouseenter', () => {
+            console.log("13. Mouse kutuya girdi");
+            hoverKutu.style.backgroundColor = "yellow";
+        });
+
+
+        hoverKutu.addEventListener('mouseleave', () => {
+            console.log("14. Mouse kutudan çıktı");
+            hoverKutu.style.backgroundColor = "#f9f9f9";
+        });
+
+
+        const klavyeInput = document.getElementById('klavyeInput');
+        klavyeInput.addEventListener('keydown', (olay) => {
+            console.log("15. Basılan Tuş:", olay.key);
+        });
+
+
+        klavyeInput.addEventListener('input', (e) => {
+            console.log("16. Güncel içerik:", e.target.value);
+        });
+
+
+        const form = document.getElementById('myForm');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            console.log("17. Form gönderildi ama sayfa yenilenmedi!");
+        });
+
+
+        const sehirSec = document.getElementById('sehirSec');
+        sehirSec.addEventListener('change', (e) => {
+            console.log("18. Seçilen Şehir:", e.target.value);
+        });
+
+
+        klavyeInput.addEventListener('focus', () => {
+            console.log("19. Input alanına odaklanıldı (Focus)");
+            klavyeInput.style.border = "2px solid red";
+        });
+
+
+        klavyeInput.addEventListener('blur', () => {
+            console.log("20. Input alanından çıkıldı (Blur)");
+            klavyeInput.style.border = "1px solid gray";
+        });
+
+
+        // 
+
+        console.log();
+
+        const konteyner = document.getElementById('konteyner');
+
+
+        konteyner.textContent = "21. Bu metin JavaScript ile değiştirildi!";
+        console.log("21. Metin değiştirildi");
+
+
+        konteyner.innerHTML = "22. Burası <strong>Kalın</strong> ve <em>İtalik</em> oldu.";
+        console.log("22. HTML içeriği değiştirildi");
+
+
+        konteyner.style.color = "purple";
+        konteyner.style.fontSize = "18px";
+        console.log("23. CSS Stili değiştirildi");
+
+        const yeniKutu = document.createElement('div');
+        yeniKutu.textContent = "24. Ben sonradan yaratıldım!";
+        yeniKutu.style.border = "1px dashed black";
+        document.body.appendChild(yeniKutu);
+        console.log("24. Yeni element yaratıldı ve eklendi");
+
+
+        konteyner.classList.add('renkli');
+        console.log("25. 'renkli' class'ı eklendi");
+
+
+        setTimeout(() => {
+            konteyner.classList.remove('renkli');
+            console.log("26. 'renkli' class'ı 2 sn sonra silindi");
+        }, 2000);
+
+
+        btn.addEventListener('click', () => {
+            konteyner.classList.toggle('renkli');
+            console.log("27. Class toggle edildi");
+        });
+
+
+        const resim = document.getElementById('resim');
+        resim.setAttribute('src', 'https://via.placeholder.com/150');
+        resim.style.display = 'block';
+        console.log("28. Resim kaynağı (src) atandı");
+
+
+        const liste = document.getElementById('liste');
+        const yeniMadde = document.createElement('li');
+        yeniMadde.textContent = "29. Listenin Başına Eklendim";
+        liste.prepend(yeniMadde);
+        console.log("29. Listeye eleman eklendi");
+
+
+        const silinecek = document.getElementById('silinecek');
+        setTimeout(() => {
+            silinecek.remove();
+            console.log("30. Eleman tamamen silindi.");
+        }, 3000);
+
+    </script>
 </body>
 </html>

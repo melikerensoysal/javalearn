@@ -4,7 +4,7 @@ function selamla(isim, callback) {
 }
 
 selamla("Ahmet", function(gelenMesaj) {
-    console.log("1. ornek:", gelenMesaj);
+    console.log( gelenMesaj);
 });
 
 
@@ -14,12 +14,12 @@ function topla(sayi1, sayi2, callback) {
 }
 
 topla(5, 10, (sonuc) => {
-    console.log("2. ornek (sonuc):", sonuc);
+    console.log("(sonuc):", sonuc);
 });
 
 
 function veriIndir(callback) {
-    console.log("3. Ornek: Veri iniyor");
+    console.log("Veri iniyor");
     setTimeout(() => {
         callback("İndirme tamamlandi");
     }, 1000);
@@ -40,9 +40,9 @@ function dosyaOku(basariliMi, callback) {
 
 dosyaOku(false, (hata, veri) => {
     if (hata) {
-        console.log("4. ornek (Hata):", hata);
+        console.log( hata);
     } else {
-        console.log("4. ornek (Veri):", veri);
+        console.log(veri);
     }
 });
 
@@ -55,12 +55,12 @@ function diziGez(dizi, callback) {
 
 const meyveler = ["Elma", "Armut", "Muz"];
 diziGez(meyveler, (meyve) => {
-    console.log("5. ornek (Meyve):", meyve);
+    console.log(meyve);
 });
 
 
 function girisYap(kullaniciAdi, callback) {
-    console.log("6. ornek: giris yapiliyor");
+    console.log();
     setTimeout(() => {
         callback(kullaniciAdi);
     }, 500);
@@ -78,7 +78,7 @@ function kitapBilgisi(callback) {
 }
 
 kitapBilgisi((ad, yazar) => {
-    console.log(`7. ornek: ${ad} kitabininn yazari ${yazar}.`);
+    console.log(` ${ad} kitabininn yazari ${yazar}.`);
 });
 
 
@@ -89,8 +89,8 @@ function sadeceCiftSayilar(sayi, callback) {
     }
 }
 
-sadeceCiftSayilar(4, (s) => console.log("8. ornek (cift):", s));
-sadeceCiftSayilar(5, (s) => console.log("8. ornek (burasii hata alir):", s));
+sadeceCiftSayilar(4, (s) => console.log( s));
+sadeceCiftSayilar(5, (s) => console.log( s));
 
 
 

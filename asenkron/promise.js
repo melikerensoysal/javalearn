@@ -19,8 +19,8 @@ const yaziTura = new Promise((resolve, reject) => {
 });
 
 yaziTura
-    .then((sonuc) => console.log("2. Ornek:", sonuc))
-    .catch((hata) => console.log("2. ornek Hata:", hata));
+    .then((sonuc) => console.log(sonuc))
+    .catch((hata) => console.log(hata));
 
 
 
@@ -31,7 +31,7 @@ const bekleVeDondur = new Promise((resolve, reject) => {
     }, 3000);
 });
 
-bekleVeDondur.then((msj) => console.log("3. ornek:", msj));
+bekleVeDondur.then((msj) => console.log(msj));
 
 
 
@@ -41,15 +41,15 @@ const sayiGetir = new Promise((resolve) => resolve(10));
 
 sayiGetir
     .then((sayi) => {
-        console.log("4. ornek (ilk sayi):", sayi);
+        console.log( sayi);
         return sayi * 2;
     })
     .then((yeniSayi) => {
-        console.log("4. ornek (İki kati):", yeniSayi);
+        console.log(yeniSayi);
         return yeniSayi + 5;
     })
     .then((sonSayi) => {
-        console.log("4. ornek (sonuc):", sonSayi);
+        console.log(sonSayi);
     });
 
 
@@ -67,7 +67,7 @@ function kullaniciKontrol(isim) {
 
 kullaniciKontrol("Misafir")
     .then((res) => console.log(res))
-    .catch((err) => console.log("5. ornek hata:", err));
+    .catch((err) => console.log(err));
 
 
 
@@ -79,7 +79,7 @@ const veritabaniIslemi = new Promise((resolve, reject) => {
 
 veritabaniIslemi
     .then((res) => console.log(res))
-    .finally(() => console.log("6. ornek: baglanti kapatildi (Her turlu calisir)."));
+    .finally(() => console.log());
 
 
 
@@ -89,7 +89,7 @@ const p2 = new Promise(resolve => setTimeout(() => resolve("yazilar indi"), 2000
 
 Promise.all([p1, p2])
     .then((sonuclar) => {
-        console.log("7. ornek (Hepsi hazir):", sonuclar);
+        console.log( sonuclar);
     });
 
 
@@ -100,7 +100,7 @@ const hizli = new Promise(resolve => setTimeout(() => resolve("hizli olan kazand
 const yavas = new Promise(resolve => setTimeout(() => resolve("yavas olan"), 500));
 
 Promise.race([hizli, yavas])
-    .then((kazanan) => console.log("8. ornek:", kazanan));
+    .then((kazanan) => console.log( kazanan));
 
 
 
@@ -108,7 +108,7 @@ Promise.race([hizli, yavas])
 
 function urunGetir(id) {
     return new Promise((resolve, reject) => {
-        console.log(`9. urun ${id} araniyor...`);
+        console.log(` ${id} araniyor...`);
         setTimeout(() => {
             const urun = { id: id, ad: "Laptop", fiyat: 15000 };
             resolve(urun);
@@ -116,7 +116,7 @@ function urunGetir(id) {
     });
 }
 
-urunGetir(101).then(u => console.log("9. ornek urun:", u));
+urunGetir(101).then(u => console.log(u));
 
 
 
@@ -131,4 +131,4 @@ function bolme(a, b) {
 
 bolme(10, 0)
     .then(sonuc => console.log(sonuc))
-    .catch(hata => console.log("10. ornek hata:", hata));
+    .catch(hata => console.log( hata));
